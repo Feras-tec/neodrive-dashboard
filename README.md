@@ -34,9 +34,9 @@ Die Inspiration für dieses Projekt stammt von modernen Elektrofahrzeug-Schnitts
 
 _(Hier kannst du deine Screenshots einfügen)_
 
-1. **Dark Mode View:** `![Dark Mode](./screenshots/dark-mode.png)`
-2. **Light Mode View:** `![Light Mode](./screenshots/light-mode.png)`
-3. **3D Interaction:** `![3D View](./screenshots/3d-interaction.png)`
+1. **Dark Mode View:** `![Dark Mode](./screenshots/dark-mode.png)
+2. **Light Mode View:** `![Light Mode](./screenshots/light-mode.png)
+3. **3D Interaction:** `![3D View](./screenshots/3d-interaction.png)
 
 ## 🚀 Installation
 
