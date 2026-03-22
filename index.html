@@ -25,13 +25,13 @@
       <div class="flex-none flex items-center gap-3">
         <div class="flex gap-2">
           <button
-            class="btn btn-primary btn-sm rounded-xl text-[10px] font-black tracking-widest uppercase px-5 shadow-lg shadow-primary/20 hover:scale-105 transition-all"
+            class="bg-indigo-500 shadow-lg shadow-indigo-500/50 btn btn-sm rounded-xl text-[10px] font-black tracking-widest uppercase px-5 hover:scale-105 transition-all"
           >
             Explore
           </button>
           <button
             onclick="toggleBooking()"
-            class="btn btn-primary btn-sm rounded-xl text-[10px] font-black tracking-widest uppercase px-5 shadow-lg shadow-primary/20 hover:scale-105 transition-all open-booking"
+            class="bg-indigo-500 shadow-lg shadow-indigo-500/50 btn btn-sm rounded-xl text-[10px] font-black tracking-widest uppercase px-5 hover:scale-105 transition-all open-booking"
           >
             Reserve
           </button>
@@ -90,9 +90,9 @@
           X-PROTOS
         </h1>
         <p
-          class="text-sm md:text-xl text-base-content opacity-70 max-w-2xl mx-auto font-light tracking-[0.5em] uppercase"
+          class="text-[10px] md:text-xs text-base-content opacity-60 max-w-2xl mx-auto font-medium tracking-[0.3em] uppercase mt-2"
         >
-          Redefining the digital cockpit
+          REDEFINING AUTOMOTIVE EXCELLENCE
         </p>
       </section>
 
@@ -101,7 +101,7 @@
           class="absolute -inset-1 bg-primary/10 rounded-[3.5rem] blur-2xl group-hover:bg-primary/20 transition duration-1000"
         ></div>
         <div
-          class="card relative w-full max-w-6xl mx-auto bg-base-200 backdrop-blur-3xl border border-base-content/10 rounded-[3rem] p-8 shadow-inner"
+          class="card relative w-full max-w-6xl mx-auto bg-base-200/40 backdrop-blur-xl border border-white/10 rounded-[3rem] p-8 shadow-2xl transition-all duration-500 hover:bg-base-200/60 hover:shadow-primary/20"
         >
           <model-viewer
             id="car-model"
@@ -149,42 +149,51 @@
 
       <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div
-          class="stat bg-base-200 backdrop-blur-md border border-base-content/10 rounded-3xl p-8 transition hover:bg-base-300"
+          class="stat bg-base-200/20 backdrop-blur-xl border border-base-content/10 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-base-200/60 hover:shadow-primary/20"
           data-aos="fade-right"
         >
           <div
-            class="stat-title text-base-content opacity-60 uppercase tracking-widest text-[10px] font-bold"
+            class="stat-title text-base-content opacity-70 uppercase tracking-widest text-[10px] font-bold"
           >
-            Velocity
+            EXPERIENCE
           </div>
-          <div class="stat-value text-primary text-5xl font-black">
-            320<span class="text-sm ml-1 font-light opacity-50">km/h</span>
+          <div class="flex flex-wrap items-baseline gap-2">
+            <div class="stat-value text-base-content text-2xl sm:text-3xl lg:text-5xl font-black">
+              500+
+            </div>
+            <span class="text-sm font-light opacity-50">CARS WRAPPED</span>
           </div>
         </div>
         <div
-          class="stat bg-base-200 backdrop-blur-md border border-base-content/10 rounded-3xl p-8 transition hover:bg-base-300"
+          class="stat bg-base-200/20 backdrop-blur-xl border border-base-content/10 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-base-200/60 hover:shadow-primary/20"
           data-aos="fade-up"
         >
           <div
-            class="stat-title text-base-content opacity-60 uppercase tracking-widest text-[10px] font-bold"
+            class="stat-title text-base-content opacity-70 uppercase tracking-widest text-[10px] font-bold"
           >
-            Battery
+            PROTECTION
           </div>
-          <div class="stat-value text-secondary text-5xl font-black">
-            900<span class="text-sm ml-1 font-light opacity-50">mi</span>
+          <div class="flex flex-wrap items-baseline gap-2">
+            <div class="stat-value text-base-content text-2xl sm:text-3xl lg:text-5xl font-black">
+              100%
+            </div>
+            <span class="text-sm font-light opacity-50">UV REJECTION</span>
           </div>
         </div>
         <div
-          class="stat bg-base-200 backdrop-blur-md border border-base-content/10 rounded-3xl p-8 transition hover:bg-base-300"
+          class="stat bg-base-200/20 backdrop-blur-xl border border-base-content/10 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-base-200/60 hover:shadow-primary/20"
           data-aos="fade-left"
         >
           <div
-            class="stat-title text-base-content opacity-60 uppercase tracking-widest text-[10px] font-bold"
+            class="stat-title text-base-content opacity-70 uppercase tracking-widest text-[10px] font-bold"
           >
-            Acceleration
+            SATISFACTION
           </div>
-          <div class="stat-value text-base-content text-5xl font-black">
-            1.9<span class="text-sm ml-1 font-light opacity-50">sec</span>
+          <div class="flex flex-wrap items-baseline gap-2">
+            <div class="stat-value text-base-content text-2xl sm:text-3xl lg:text-5xl font-black">
+              4.9/5
+            </div>
+            <span class="text-sm font-light opacity-50">CLIENT RATING</span>
           </div>
         </div>
       </section>
@@ -200,7 +209,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div
-            class="group cursor-pointer relative overflow-hidden rounded-[2.5rem] border border-base-content/10 bg-base-200 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-base-300 service-card"
+            class="group cursor-pointer relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-base-200/60 hover:shadow-primary/20 service-card"
             data-title="VINYL WRAPPING"
             data-desc="Full vehicle wrapping using premium vinyl films. Transform your vehicle's appearance while safeguarding the original paint from road debris and weather elements."
             data-theme="primary"
@@ -261,7 +270,7 @@
             </div>
           </div>
           <div
-            class="group cursor-pointer relative overflow-hidden rounded-[2.5rem] border border-base-content/10 bg-base-200 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-blue-500/50 hover:bg-base-300 service-card"
+            class="group cursor-pointer relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-blue-500/50 hover:bg-base-200/60 hover:shadow-primary/20 service-card"
             data-title="WINDOW TINTING"
             data-desc="High-performance ceramic tinting solutions. Enjoy up to 90% heat rejection and maximum UV protection for a cooler, safer driving experience."
             data-theme="blue"
@@ -322,7 +331,7 @@
             </div>
           </div>
           <div
-  class="group cursor-pointer relative overflow-hidden rounded-[2.5rem] border border-base-content/10 bg-base-200 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-secondary/50 hover:bg-base-300 service-card"
+  class="group cursor-pointer relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-secondary/50 hover:bg-base-200/60 hover:shadow-primary/20 service-card"
   data-title="AUTO DETAILING"
   data-desc="Comprehensive detailing services including paint correction, ceramic coating, and deep interior restoration for absolute vehicle perfection."
   data-theme="secondary"
@@ -350,12 +359,74 @@
     </div>
   </div>
 </div>
-      </section>
-    </main>
+    </section>
+
+    <section class="space-y-12">
+      <div class="text-center" data-aos="fade-up">
+        <h2 class="text-3xl font-black italic tracking-tighter text-base-content">
+          PRICING <span class="text-primary">PLANS</span>
+        </h2>
+        <p class="text-[10px] uppercase tracking-[0.4em] text-base-content opacity-70">
+          Choose the perfect plan for your needs
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto justify-center">
+        <!-- Basic Plan -->
+        <div class="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-base-200/60 hover:shadow-primary/20">
+          <div class="p-10 flex flex-col space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+              <span class="text-2xl font-black">$</span>
+            </div>
+            <h3 class="text-2xl font-black uppercase tracking-tighter text-base-content">Basic</h3>
+            <div class="text-4xl font-black text-primary">$99</div>
+            <ul class="space-y-2 text-sm text-base-content opacity-60">
+              <li>Vinyl Wrapping</li>
+              <li>Basic Detailing</li>
+              <li>1 Year Warranty</li>
+            </ul>
+            <button class="btn btn-primary w-full rounded-xl font-black uppercase tracking-widest text-[10px]">Choose Plan</button>
+          </div>
+        </div>
+        <!-- Pro Plan -->
+        <div class="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-base-200/60 hover:shadow-primary/20">
+          <div class="p-10 flex flex-col space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+              <span class="text-2xl font-black">$</span>
+            </div>
+            <h3 class="text-2xl font-black uppercase tracking-tighter text-base-content">Pro</h3>
+            <div class="text-4xl font-black text-primary">$199</div>
+            <ul class="space-y-2 text-sm text-base-content opacity-60">
+              <li>Full Vehicle Wrap</li>
+              <li>Window Tinting</li>
+              <li>Advanced Detailing</li>
+              <li>2 Year Warranty</li>
+            </ul>
+            <button class="btn btn-primary w-full rounded-xl font-black uppercase tracking-widest text-[10px]">Choose Plan</button>
+          </div>
+        </div>
+        <!-- Premium Plan -->
+        <div class="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-base-200/60 hover:shadow-primary/20">
+          <div class="p-10 flex flex-col space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+              <span class="text-2xl font-black">$</span>
+            </div>
+            <h3 class="text-2xl font-black uppercase tracking-tighter text-base-content">Premium</h3>
+            <div class="text-4xl font-black text-primary">$299</div>
+            <ul class="space-y-2 text-sm text-base-content opacity-60">
+              <li>Custom Design Wrap</li>
+              <li>Ceramic Coating</li>
+              <li>Full Interior Detail</li>
+              <li>Lifetime Warranty</li>
+            </ul>
+            <button class="btn btn-primary w-full rounded-xl font-black uppercase tracking-widest text-[10px]">Choose Plan</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <dialog id="main-service-modal" class="modal modal-bottom sm:modal-middle">
       <div
-        class="modal-box bg-base-200 border border-base-content/10 backdrop-blur-2xl p-0 overflow-hidden rounded-3xl max-w-2xl"
+        class="modal-box bg-base-200/40 border border-white/10 backdrop-blur-xl p-0 overflow-hidden rounded-3xl max-w-2xl shadow-2xl transition-all duration-500 hover:bg-base-200/60 hover:shadow-primary/20"
       >
         <div
           id="modal-banner"
@@ -396,7 +467,7 @@
         class="absolute -inset-1 bg-linear-to-r from-primary to-blue-600 rounded-4xl blur opacity-20"
       ></div>
       <div
-        class="card relative bg-base-200 backdrop-blur-2xl border border-base-content/10 rounded-4xl shadow-2xl"
+        class="card relative bg-base-200/40 backdrop-blur-xl border border-white/10 rounded-4xl shadow-2xl transition-all duration-500 hover:bg-base-200/60 hover:shadow-primary/20"
       >
         <div class="card-body p-6">
           <div class="flex justify-between items-center mb-5">
@@ -480,7 +551,7 @@
     </div>
 
     <footer
-      class="footer p-12 bg-base-100 border-t border-base-content/10 flex flex-col items-center gap-8"
+      class="footer p-12 bg-base-100 border-t border-base-content/10 w-full flex flex-col items-center justify-center text-center gap-8"
     >
       <div class="flex flex-col items-center gap-2">
         <div class="text-2xl font-black text-primary italic tracking-tighter">
