@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAXPRO | 3D Interactive Dashboard</title>
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
+    ></script>
+    <script type="module" crossorigin src="/neodrive-dashboard/assets/index-Cw8dCSPB.js"></script>
+    <link rel="stylesheet" crossorigin href="/neodrive-dashboard/assets/index-DfkZAJXE.css">
+  </head>
+  <body
+    class="min-h-screen bg-base-100 text-base-content overflow-x-hidden selection:bg-primary font-sans"
+  >
+    <header
+      class="navbar bg-base-100/30 backdrop-blur-xl sticky top-0 z-60 px-4 md:px-8 border-b border-base-content/10"
+    >
+      <div class="flex-1">
+        <a class="text-2xl font-black tracking-tighter text-primary italic"
+          >MAX<span class="text-base-content">PRO</span></a
+        >
+      </div>
+      <div class="flex-none flex items-center gap-3">
+        <div class="flex gap-2">
+          <button
+            class="bg-indigo-500 shadow-lg shadow-indigo-500/50 btn btn-sm rounded-xl text-[10px] font-black tracking-widest uppercase px-5 hover:scale-105 transition-all"
+          >
+            Explore
+          </button>
+          <button
+            onclick="toggleBooking()"
+            class="bg-indigo-500 shadow-lg shadow-indigo-500/50 btn btn-sm rounded-xl text-[10px] font-black tracking-widest uppercase px-5 hover:scale-105 transition-all open-booking"
+          >
+            Reserve
+          </button>
+        </div>
+        <div class="dropdown dropdown-end">
+          <label
+            tabindex="0"
+            class="btn btn-ghost btn-circle border border-white/5 bg-white/5 hover:bg-white/10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-primary"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h7"
+              />
+            </svg>
+          </label>
+          <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow-2xl bg-base-200/95 backdrop-blur-lg rounded-2xl w-52 border border-base-content/10">
+  <li>
+    <a class="py-3 font-bold uppercase tracking-widest text-[10px] text-primary">Showroom</a>
+  </li>
+  <li>
+    <a class="py-3 font-bold uppercase tracking-widest text-[10px] text-primary open-booking">Book Now</a>
+  </li>
+  
+  <div class="divider my-0 opacity-10"></div>
+  <li class="flex flex-row items-center justify-between py-2 px-3">
+    <span class="font-bold uppercase tracking-widest text-[10px] text-base-content opacity-60">Appearance</span>
+    <label class="swap swap-rotate">
+      <input type="checkbox" id="theme-toggle" />
+      <svg class="swap-on fill-current w-5 h-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,17.66l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,18.36,17ZM12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Z"/></svg>
+      <svg class="swap-off fill-current w-5 h-5 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z"/></svg>
+    </label>
+  </li>
+  <div class="divider my-0 opacity-10"></div>
+  <li>
+    <a class="py-3 font-bold uppercase tracking-widest text-[10px] text-primary">Settings</a>
+  </li>
+</ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 space-y-24">
+      <section class="text-center" data-aos="zoom-out" data-aos-duration="1500">
+        <h1
+          class="text-6xl md:text-[10rem] font-black leading-none tracking-tighter mb-4 bg-linear-to-b from-base-content to-base-content/70 bg-clip-text text-transparent"
+        >
+          X-PROTOS
+        </h1>
+        <p
+          class="text-[10px] md:text-xs text-base-content opacity-60 max-w-2xl mx-auto font-medium tracking-[0.3em] uppercase mt-2"
+        >
+          REDEFINING AUTOMOTIVE EXCELLENCE
+        </p>
+      </section>
+
+      <section class="relative group" data-aos="fade-up">
+        <div
+          class="absolute -inset-1 bg-primary/10 rounded-[3.5rem] blur-2xl group-hover:bg-primary/20 transition duration-1000"
+        ></div>
+        <div
+          class="card relative w-full max-w-6xl mx-auto bg-base-200/40 backdrop-blur-xl border border-white/10 rounded-[3rem] p-8 shadow-2xl transition-all duration-500 hover:bg-base-200/60 hover:shadow-primary/20"
+        >
+          <model-viewer
+            id="car-model"
+            class="model-view"
+            src="car.glb"
+            ar
+            camera-controls
+            autoplay
+            auto-rotate
+            shadow-intensity="2"
+            exposure="1.2"
+            environment-image="neutral"
+            alt="NEODRIVE X-PROTOS 3D Car Model"
+          ></model-viewer>
+          <div class="flex flex-col items-center gap-4 mt-8">
+            <div class="flex flex-wrap justify-center gap-3">
+              <button
+                data-color="#ff4500"
+                class="w-8 h-8 rounded-full border border-white/20 bg-[#ff4500] hover:scale-125 transition"
+              ></button>
+              <button
+                data-color="#0066ff"
+                class="w-8 h-8 rounded-full border border-white/20 bg-[#0066ff] hover:scale-125 transition"
+              ></button>
+              <button
+                data-color="#32cd32"
+                class="w-8 h-8 rounded-full border border-white/20 bg-[#32cd32] hover:scale-125 transition"
+              ></button>
+              <button
+                data-color="#ffd700"
+                class="w-8 h-8 rounded-full border border-white/20 bg-[#ffd700] hover:scale-125 transition"
+              ></button>
+              <button
+                data-color="#ffffff"
+                class="w-8 h-8 rounded-full border border-white/20 bg-[#ffffff] hover:scale-125 transition"
+              ></button>
+              <button
+                data-color="#ff1493"
+                class="w-8 h-8 rounded-full border border-white/20 bg-[#ff1493] hover:scale-125 transition"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div
+          class="stat bg-base-200/20 backdrop-blur-xl border border-base-content/10 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-base-200/60 hover:shadow-primary/20"
+          data-aos="fade-right"
+        >
+          <div
+            class="stat-title text-base-content opacity-70 uppercase tracking-widest text-[10px] font-bold"
+          >
+            EXPERIENCE
+          </div>
+          <div class="flex flex-wrap items-baseline gap-2">
+            <div class="stat-value text-base-content text-2xl sm:text-3xl lg:text-5xl font-black">
+              500+
+            </div>
+            <span class="text-sm font-light opacity-50">CARS WRAPPED</span>
+          </div>
+        </div>
+        <div
+          class="stat bg-base-200/20 backdrop-blur-xl border border-base-content/10 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-base-200/60 hover:shadow-primary/20"
+          data-aos="fade-up"
+        >
+          <div
+            class="stat-title text-base-content opacity-70 uppercase tracking-widest text-[10px] font-bold"
+          >
+            PROTECTION
+          </div>
+          <div class="flex flex-wrap items-baseline gap-2">
+            <div class="stat-value text-base-content text-2xl sm:text-3xl lg:text-5xl font-black">
+              100%
+            </div>
+            <span class="text-sm font-light opacity-50">UV REJECTION</span>
+          </div>
+        </div>
+        <div
+          class="stat bg-base-200/20 backdrop-blur-xl border border-base-content/10 rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:bg-base-200/60 hover:shadow-primary/20"
+          data-aos="fade-left"
+        >
+          <div
+            class="stat-title text-base-content opacity-70 uppercase tracking-widest text-[10px] font-bold"
+          >
+            SATISFACTION
+          </div>
+          <div class="flex flex-wrap items-baseline gap-2">
+            <div class="stat-value text-base-content text-2xl sm:text-3xl lg:text-5xl font-black">
+              4.9/5
+            </div>
+            <span class="text-sm font-light opacity-50">CLIENT RATING</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-12">
+        <div class="text-center" data-aos="fade-up">
+          <h2 class="text-3xl font-black italic tracking-tighter text-base-content">
+            PREMIUM <span class="text-primary">SERVICES</span>
+          </h2>
+          <p class="text-[10px] uppercase tracking-[0.4em] text-base-content opacity-70">
+            Elite Care for your Machine
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="group cursor-pointer relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-base-200/60 hover:shadow-primary/20 service-card"
+            data-title="VINYL WRAPPING"
+            data-desc="Full vehicle wrapping using premium vinyl films. Transform your vehicle's appearance while safeguarding the original paint from road debris and weather elements."
+            data-theme="primary"
+            data-img1="wrapping1.jpg"
+            data-img2="wrapping2.jpg"
+            data-img3="wrapping3.jpg"
+          >
+            <div class="h-48 w-full overflow-hidden">
+              <img src="wrapping1.jpg" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-10 space-y-5">
+              <div
+                class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-7 w-7"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="text-2xl font-black uppercase tracking-tighter text-base-content"
+              >
+                Vinyl Wrapping
+              </h3>
+              <p class="text-xs text-base-content opacity-60 leading-relaxed">
+                High-end automotive vinyl application for color transformation
+                and paint protection.
+              </p>
+              <div
+                class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary"
+              >
+                View Details
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div
+            class="group cursor-pointer relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-blue-500/50 hover:bg-base-200/60 hover:shadow-primary/20 service-card"
+            data-title="WINDOW TINTING"
+            data-desc="High-performance ceramic tinting solutions. Enjoy up to 90% heat rejection and maximum UV protection for a cooler, safer driving experience."
+            data-theme="blue"
+            data-img1="tinting.jpg"
+            data-img2="tinting1.jpg"
+            data-img3="tinting2.jpg"
+          >
+            <div class="h-48 w-full overflow-hidden">
+              <img src="tinting.jpg" class="w-full h-full object-cover" />
+            </div>
+            <div class="p-10 space-y-5">
+              <div
+                class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-7 w-7"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                  />
+                </svg>
+              </div>
+              <h3
+                class="text-2xl font-black uppercase tracking-tighter text-base-content"
+              >
+                Windows Tinting
+              </h3>
+              <p class="text-xs text-base-content opacity-60 leading-relaxed">
+                Advanced heat rejection films providing UV protection and
+                enhanced cabin privacy.
+              </p>
+              <div
+                class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-blue-400"
+              >
+                View Details
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div
+  class="group cursor-pointer relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-secondary/50 hover:bg-base-200/60 hover:shadow-primary/20 service-card"
+  data-title="AUTO DETAILING"
+  data-desc="Comprehensive detailing services including paint correction, ceramic coating, and deep interior restoration for absolute vehicle perfection."
+  data-theme="secondary"
+  data-img1="Auto Detaling.jpg"
+  data-img2="Auto Detaling1.jpg"
+  data-img3="Auto Detaling2.jpg"
+>
+  <div class="h-48 w-full overflow-hidden">
+    <img src="Auto Detaling.jpg" class="w-full h-full object-cover" />
+  </div>
+
+  <div class="p-10 space-y-5">
+    <div class="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary group-hover:scale-110 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.642.257a6 6 0 00-3.86.517l-2.387.477a2 2 0 00-1.022.547l1.166 1.166a2 2 0 002.828 0l.144-.144a2 2 0 00.586-1.414V14a2 2 0 114 0v.586a2 2 0 00.586 1.414l.144.144a2 2 0 002.828 0l1.166-1.166z" />
+      </svg>
+    </div>
+    <h3 class="text-2xl font-black uppercase tracking-tighter text-base-content">Auto Detailing</h3>
+    <p class="text-xs text-base-content opacity-60 leading-relaxed">Professional deep cleaning and multi-stage polishing for a showroom-perfect finish.</p>
+    <div class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-secondary">
+      View Details
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </div>
+  </div>
+</div>
+    </section>
+
+    <section class="space-y-12">
+      <div class="text-center" data-aos="fade-up">
+        <h2 class="text-3xl font-black italic tracking-tighter text-base-content">
+          PRICING <span class="text-primary">PLANS</span>
+        </h2>
+        <p class="text-[10px] uppercase tracking-[0.4em] text-base-content opacity-70">
+          Choose the perfect plan for your needs
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mx-auto justify-center">
+        <!-- Basic Plan -->
+        <div class="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-base-200/60 hover:shadow-primary/20">
+          <div class="p-10 flex flex-col space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+              <span class="text-2xl font-black">$</span>
+            </div>
+            <h3 class="text-2xl font-black uppercase tracking-tighter text-base-content">Basic</h3>
+            <div class="text-4xl font-black text-primary">$99</div>
+            <ul class="space-y-2 text-sm text-base-content opacity-60">
+              <li>Vinyl Wrapping</li>
+              <li>Basic Detailing</li>
+              <li>1 Year Warranty</li>
+            </ul>
+            <button class="btn btn-primary w-full rounded-xl font-black uppercase tracking-widest text-[10px]">Choose Plan</button>
+          </div>
+        </div>
+        <!-- Pro Plan -->
+        <div class="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-base-200/60 hover:shadow-primary/20">
+          <div class="p-10 flex flex-col space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+              <span class="text-2xl font-black">$</span>
+            </div>
+            <h3 class="text-2xl font-black uppercase tracking-tighter text-base-content">Pro</h3>
+            <div class="text-4xl font-black text-primary">$199</div>
+            <ul class="space-y-2 text-sm text-base-content opacity-60">
+              <li>Full Vehicle Wrap</li>
+              <li>Window Tinting</li>
+              <li>Advanced Detailing</li>
+              <li>2 Year Warranty</li>
+            </ul>
+            <button class="btn btn-primary w-full rounded-xl font-black uppercase tracking-widest text-[10px]">Choose Plan</button>
+          </div>
+        </div>
+        <!-- Premium Plan -->
+        <div class="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-base-200/40 backdrop-blur-xl shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:bg-base-200/60 hover:shadow-primary/20">
+          <div class="p-10 flex flex-col space-y-4">
+            <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+              <span class="text-2xl font-black">$</span>
+            </div>
+            <h3 class="text-2xl font-black uppercase tracking-tighter text-base-content">Premium</h3>
+            <div class="text-4xl font-black text-primary">$299</div>
+            <ul class="space-y-2 text-sm text-base-content opacity-60">
+              <li>Custom Design Wrap</li>
+              <li>Ceramic Coating</li>
+              <li>Full Interior Detail</li>
+              <li>Lifetime Warranty</li>
+            </ul>
+            <button class="btn btn-primary w-full rounded-xl font-black uppercase tracking-widest text-[10px]">Choose Plan</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <dialog id="main-service-modal" class="modal modal-bottom sm:modal-middle">
+      <div
+        class="modal-box bg-base-200/40 border border-white/10 backdrop-blur-xl p-0 overflow-hidden rounded-3xl max-w-2xl shadow-2xl transition-all duration-500 hover:bg-base-200/60 hover:shadow-primary/20"
+      >
+        <div
+          id="modal-banner"
+          class="h-48 flex items-center justify-center border-b border-base-content/10"
+        ></div>
+        <div class="p-8 space-y-6">
+          <h2
+            id="modal-title"
+            class="text-4xl font-black italic text-base-content tracking-tighter"
+          ></h2>
+          <p
+            id="modal-description"
+            class="text-sm text-base-content opacity-70 leading-relaxed"
+          ></p>
+        </div>
+        <div class="modal-action p-6 mt-0 bg-base-200 border-t border-base-content/10">
+          <form method="dialog" class="w-full flex gap-3">
+            <button
+              class="btn btn-primary flex-1 rounded-xl font-black uppercase tracking-widest text-[10px]"
+            >
+              Inquire Now
+            </button>
+            <button
+              class="btn btn-ghost rounded-xl font-black uppercase tracking-widest text-[10px]"
+            >
+              Close
+            </button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <div
+      id="booking-card"
+      class="fixed bottom-8 right-8 z-100 w-[320px] is-hidden is-shifted transition-all duration-500 ease-out"
+    >
+      <div
+        class="absolute -inset-1 bg-linear-to-r from-primary to-blue-600 rounded-4xl blur opacity-20"
+      ></div>
+      <div
+        class="card relative bg-base-200/40 backdrop-blur-xl border border-white/10 rounded-4xl shadow-2xl transition-all duration-500 hover:bg-base-200/60 hover:shadow-primary/20"
+      >
+        <div class="card-body p-6">
+          <div class="flex justify-between items-center mb-5">
+            <h3 class="text-sm font-black italic tracking-tighter text-base-content">
+              RESERVE UNIT
+            </h3>
+            <button
+              id="booking-close"
+              class="btn btn-ghost btn-xs btn-circle text-base-content opacity-60"
+            >
+              ✕
+            </button>
+          </div>
+          <div class="space-y-3 text-xs">
+            <input
+              type="text"
+              placeholder="Your Name"
+              class="input input-sm w-full bg-base-100 border-base-content/10 focus:border-primary rounded-lg text-base-content"
+            />
+            <input
+              type="email"
+              placeholder="Email Address"
+              class="input input-sm w-full bg-base-100 border-base-content/10 focus:border-primary rounded-lg text-base-content"
+            />
+            <div class="grid grid-cols-2 gap-2">
+              <input
+                type="date"
+                class="input input-sm bg-base-100 border-base-content/10 rounded-lg text-[10px] text-base-content"
+              />
+              <select class="select select-sm w-full bg-base-100 border-base-content/10 rounded-lg text-[10px] text-base-content appearance-none cursor-pointer focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all">
+  <option disabled selected class="bg-base-100 text-base-content opacity-60">Location</option>
+  <option value="berlin" class="bg-base-100 text-base-content py-2">Berlin</option>
+  <option value="hamburg" class="bg-base-100 text-base-content py-2">Hamburg</option>
+  <option value="dubai" class="bg-base-100 text-base-content py-2">Dubai</option>
+</select>
+            </div>
+          </div>
+          <button
+            class="btn btn-primary btn-sm w-full mt-6 rounded-xl font-bold text-[10px] tracking-widest shadow-lg shadow-primary/20"
+          >
+            CONFIRM RESERVE
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="fixed bottom-8 left-8 z-50">
+      <a
+        href="mailto:support@neodrive.com"
+        class="group flex items-center gap-3 bg-base-200 backdrop-blur-2xl border border-base-content/10 p-2 pr-6 rounded-full hover:bg-base-300 transition-all duration-500 shadow-2xl"
+      >
+        <div
+          class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-black shadow-lg shadow-primary/20 group-hover:rotate-12 transition-transform duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span
+            class="text-[9px] font-black uppercase tracking-[0.2em] text-base-content opacity-60 group-hover:text-primary transition-colors"
+            >Support</span
+          >
+          <span
+            class="text-[10px] font-bold uppercase tracking-widest text-base-content"
+            >Get in touch</span
+          >
+        </div>
+      </a>
+    </div>
+
+    <footer
+      class="footer p-12 bg-base-100 border-t border-base-content/10 w-full flex flex-col items-center justify-center text-center gap-8"
+    >
+      <div class="flex flex-col items-center gap-2">
+        <div class="text-2xl font-black text-primary italic tracking-tighter">
+          MAXPRO
+        </div>
+        <p class="text-[9px] uppercase tracking-[0.5em] text-base-content opacity-70">
+          FERASTEC. &copy; 2026
+        </p>
+      </div>
+      <div class="flex gap-6">
+        <a
+          href="https://github.com"
+          target="_blank"
+          class="group flex items-center gap-3 bg-base-200 border border-base-content/10 p-3 rounded-2xl hover:bg-base-300 hover:border-primary/50 transition-all duration-300 shadow-xl"
+        >
+          <div class="text-base-content opacity-70 group-hover:text-white transition-colors">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              ></path>
+            </svg>
+          </div>
+          <span
+            class="text-[10px] font-bold uppercase tracking-widest text-base-content opacity-60 group-hover:text-white transition-colors"
+            >GitHub</span
+          >
+        </a>
+        <a
+          href="mailto:contact@neodrive.com"
+          class="group flex items-center gap-3 bg-base-200 border border-base-content/10 p-3 rounded-2xl hover:bg-base-300 hover:border-primary/50 transition-all duration-300 shadow-xl"
+        >
+          <div class="text-base-content opacity-70 group-hover:text-primary transition-colors">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              />
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <span
+            class="text-[10px] font-bold uppercase tracking-widest text-base-content opacity-60 group-hover:text-white transition-colors"
+            >Email Me</span
+          >
+        </a>
+      </div>
+    </footer>
+
+  </body>
+</html>
