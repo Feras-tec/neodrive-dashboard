@@ -28,6 +28,13 @@ window.toggleBooking = toggleBooking;
 
 const setupModelColoring = () => {
   const modelViewer = document.querySelector("#car-model");
+  let currentFinish = "gloss";
+
+  const finishProfiles = {
+    gloss: { roughness: 0.12, metallic: 0.55 },
+    matte: { roughness: 0.78, metallic: 0.22 },
+  };
+
   const hexToRgb = (hex) => {
     hex = hex.replace("#", "");
     const r = parseInt(hex.substr(0, 2), 16) / 255;
@@ -36,28 +43,107 @@ const setupModelColoring = () => {
     return [r, g, b, 1];
   };
 
+  const setFinish = (finish) => {
+    currentFinish = finish;
+    try {
+      if (modelViewer?.model?.materials) {
+        const profile = finishProfiles[finish] || finishProfiles.gloss;
+        modelViewer.model.materials.forEach((material) => {
+          if (material?.pbrMetallicRoughness) {
+            material.pbrMetallicRoughness.setRoughnessFactor(profile.roughness);
+            material.pbrMetallicRoughness.setMetallicFactor(profile.metallic);
+          }
+        });
+      }
+    } catch (e) {
+      console.error("Error setting finish:", e);
+    }
+  };
+
+  const setColor = (colorHex) => {
+    if (!modelViewer || !colorHex) return;
+
+    try {
+      const rgb = hexToRgb(colorHex);
+      console.log("Setting color:", colorHex, "RGB:", rgb);
+
+      if (!modelViewer.model?.materials) {
+        console.warn("No materials found in model");
+        return;
+      }
+
+      modelViewer.model.materials.forEach((material, index) => {
+        console.log("Material", index, ":", material);
+        if (material?.pbrMetallicRoughness) {
+          if (material.pbrMetallicRoughness.setBaseColorFactor) {
+            material.pbrMetallicRoughness.setBaseColorFactor(rgb);
+            console.log("Applied color to material", index);
+          } else {
+            material.pbrMetallicRoughness.baseColorFactor = new Float32Array(
+              rgb,
+            );
+            console.log("Applied color via baseColorFactor to material", index);
+          }
+
+          // Re-apply finish profile after color change to keep paint behavior realistic.
+          const profile = finishProfiles[currentFinish] || finishProfiles.gloss;
+          material.pbrMetallicRoughness.setRoughnessFactor(profile.roughness);
+          material.pbrMetallicRoughness.setMetallicFactor(profile.metallic);
+        }
+      });
+    } catch (e) {
+      console.error("Error setting color:", e);
+    }
+  };
+
   if (modelViewer) {
     const applyColorLogic = () => {
+      console.log("Model viewer found, setting up color logic");
+
+      // Color button clicks
       document.querySelectorAll("[data-color]").forEach((btn) => {
         btn.addEventListener("click", () => {
           const colorHex = btn.getAttribute("data-color");
-          if (modelViewer.model && colorHex) {
-            const material = modelViewer.model.materials[0];
-            if (material?.pbrMetallicRoughness) {
-              material.pbrMetallicRoughness.setBaseColorFactor(
-                hexToRgb(colorHex),
-              );
-            }
-          }
+          console.log("Color button clicked:", colorHex);
+          setColor(colorHex);
         });
       });
+
+      // Finish button clicks
+      document.querySelectorAll("[data-finish]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const finish = btn.getAttribute("data-finish");
+          console.log("Finish button clicked:", finish);
+          setFinish(finish);
+
+          document.querySelectorAll(".finish-btn").forEach((finishBtn) => {
+            finishBtn.classList.remove(
+              "bg-primary/20",
+              "text-primary",
+              "active",
+            );
+            finishBtn.classList.add("bg-white/5");
+          });
+          btn.classList.remove("bg-white/5");
+          btn.classList.add("bg-primary/20", "text-primary", "active");
+        });
+      });
+
+      setFinish(currentFinish);
     };
 
     if (modelViewer.loaded) {
+      console.log("Model viewer already loaded");
       applyColorLogic();
     } else {
-      modelViewer.addEventListener("load", applyColorLogic);
+      console.log("Waiting for model viewer to load");
+      modelViewer.addEventListener("load", () => {
+        console.log("Model viewer loaded");
+        applyColorLogic();
+      });
     }
+  } else {
+    console.error("Model viewer element not found");
   }
 };
 
@@ -100,10 +186,77 @@ const setupDynamicModal = () => {
     });
   });
 
+  // Clicking a pricing plan opens the related service modal.
+  document.querySelectorAll(".pricing-card").forEach((planCard) => {
+    planCard.addEventListener("click", () => {
+      const serviceRef = planCard.getAttribute("data-service-ref");
+      if (!serviceRef) return;
+
+      const targetService = document.querySelector(
+        `.service-card[data-service-ref="${serviceRef}"]`,
+      );
+
+      if (targetService) {
+        targetService.click();
+      }
+    });
+  });
+
   modal?.addEventListener("click", (e) => {
     if (e.target === modal) {
       modal.close();
     }
+  });
+};
+
+// Language switching
+let currentLanguage = localStorage.getItem("language") || "en";
+
+const languageFlags = {
+  en: "🇬🇧",
+  de: "🇩🇪",
+};
+
+const switchLanguage = (lang) => {
+  currentLanguage = lang;
+  localStorage.setItem("language", lang);
+
+  const languageFlag = document.getElementById("language-flag");
+  if (languageFlag) {
+    languageFlag.textContent = languageFlags[lang] || languageFlags.en;
+  }
+
+  // Update active state for language menu options.
+  document.querySelectorAll("[data-set-lang]").forEach((option) => {
+    const code = option.getAttribute("data-set-lang");
+    if (!code) return;
+    const isActive = code === lang;
+    option.classList.toggle("text-primary", isActive);
+    option.classList.toggle("bg-primary/10", isActive);
+  });
+
+  // Update all translatable elements
+  document.querySelectorAll("[data-en]").forEach((element) => {
+    const en = element.getAttribute("data-en");
+    const de = element.getAttribute("data-de");
+    if (en && de) {
+      element.textContent = lang === "en" ? en : de;
+    }
+  });
+
+  // Update HTML lang
+  document.documentElement.lang = lang;
+};
+
+const initLanguageSwitcher = () => {
+  const toggle = document.getElementById("language-toggle");
+  if (!toggle) return;
+
+  switchLanguage(currentLanguage);
+
+  toggle.addEventListener("click", () => {
+    const nextLanguage = currentLanguage === "en" ? "de" : "en";
+    switchLanguage(nextLanguage);
   });
 };
 
@@ -120,6 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleBooking(false);
   });
 
+  initLanguageSwitcher();
   setupDynamicModal();
   setupModelColoring();
 

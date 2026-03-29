@@ -78,3 +78,134 @@ body {
 .modal-box {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.pricing-card .pricing-hint {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.55rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(79, 70, 229, 0.16);
+  color: #c7d2fe;
+  animation: pricingHintPulse 2.2s ease-in-out infinite;
+}
+
+.pricing-card:hover .pricing-hint {
+  background: rgba(79, 70, 229, 0.28);
+  color: #e0e7ff;
+}
+
+.pricing-card .pricing-hint-icon {
+  letter-spacing: normal;
+  font-size: 10px;
+  transform: translateX(0);
+  transition: transform 0.25s ease;
+}
+
+.pricing-card:hover .pricing-hint-icon {
+  transform: translateX(2px);
+}
+
+@keyframes pricingHintPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+[data-theme="light"] .pricing-card .pricing-hint {
+  border-color: rgba(0, 0, 0, 0.12);
+  background: rgba(79, 70, 229, 0.12);
+  color: #3730a3;
+}
+
+.x-protos-title {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    125deg,
+    #c8ecff 0%,
+    #4fb0ff 22%,
+    #116bff 46%,
+    #5fcbff 70%,
+    #d9f3ff 100%
+  );
+  background-size: 220% 220%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 24px rgba(37, 99, 235, 0.55);
+  animation:
+    xProtosBlueFlow 6s ease-in-out infinite,
+    xProtosPulse 2.1s ease-in-out infinite;
+}
+
+.x-protos-title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background: linear-gradient(
+    95deg,
+    transparent 36%,
+    rgba(255, 255, 255, 0.95) 50%,
+    transparent 64%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: xProtosShimmer 2.8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes xProtosBlueFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes xProtosShimmer {
+  0% {
+    background-position: 160% 0;
+  }
+  100% {
+    background-position: -60% 0;
+  }
+}
+
+@keyframes xProtosPulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0.5rem rgba(59, 130, 246, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 1.3rem rgba(59, 130, 246, 0.95));
+  }
+}
+
+@media (max-width: 768px) {
+  .x-protos-title {
+    letter-spacing: -0.03em;
+    text-shadow: 0 0 14px rgba(59, 130, 246, 0.28);
+  }
+}
