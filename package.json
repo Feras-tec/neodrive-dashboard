@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
-    "aos": "^2.3.4"
+    "aos": "^2.3.4",
+    "three": "^0.183.2"
   }
 }

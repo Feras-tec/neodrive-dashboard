@@ -1,0 +1,30 @@
+{
+  "name": "MAXPRO Dashboard",
+  "short_name": "MAXPRO",
+  "description": "Explore our advanced 3D interactive dashboard for auto detailing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.jpg",
+      "sizes": "1791x879",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "MAXPRO Desktop Dashboard"
+    }
+  ]
+}

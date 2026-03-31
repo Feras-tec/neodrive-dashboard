@@ -10,6 +10,16 @@
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
     ></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+<link rel="manifest" href="icons/site.webmanifest">
+<meta property="og:title" content="MAXPRO | 3D Interactive Dashboard">
+<meta property="og:description" content="Explore our advanced 3D interactive dashboard for auto detailing.">
+<meta property="og:image" content="/og-image.jpg">
+<meta property="og:type" content="website">
+<meta name="description" content="MAXPRO provides a professional 3D interactive experience for car enthusiasts and detailing services.">
+<meta name="keywords" content="3D, Car, Auto Detailing, Dashboard, Interactive">
   </head>
   <body
     class="min-h-screen bg-base-100 text-base-content overflow-x-hidden selection:bg-primary font-sans"
@@ -123,6 +133,7 @@
             shadow-intensity="1.4"
             exposure="1"
             environment-image="legacy"
+            draco-decoder-path="/draco/"
             alt="NEODRIVE X-PROTOS 3D Car Model"
           ></model-viewer>
           <div class="flex flex-col items-center gap-6 mt-8">
@@ -630,6 +641,30 @@
         </div>
       </a>
     </div>
+
+    <section class="relative" data-aos="fade-up">
+      <div
+        class="card relative w-full max-w-6xl mx-auto bg-base-200/40 backdrop-blur-xl border border-white/10 rounded-[3rem] p-8 shadow-2xl transition-all duration-500 hover:bg-base-200/60 hover:shadow-primary/20"
+      >
+        <div class="text-center mb-6">
+          <h2
+            class="text-3xl font-black italic tracking-tighter text-base-content"
+            data-en="PLAZA"
+            data-de="PLAZA"
+          >
+            PLAZA
+          </h2>
+          <p
+            class="text-[10px] uppercase tracking-[0.4em] text-base-content opacity-70"
+            data-en="Immersive 3D Environment"
+            data-de="Immersive 3D Umgebung"
+          >
+            Immersive 3D Environment
+          </p>
+        </div>
+        <div id="plaza-three-canvas" class="w-full h-150 rounded-2xl overflow-hidden"></div>
+      </div>
+    </section>
 
     <footer
       class="footer p-12 bg-base-100 border-t border-base-content/10 w-full flex flex-col items-center justify-center text-center gap-8"
