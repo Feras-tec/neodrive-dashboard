@@ -2,33 +2,38 @@
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MAXPRO | 3D Interactive Dashboard</title>
+    <title>MAXPRO | Premium Car Detailing & Wrapping Studio</title>
     <link rel="stylesheet" href="/src/style.css" />
     <script
       type="module"
       src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
     ></script>
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-<link rel="manifest" href="icons/site.webmanifest">
-<meta property="og:title" content="MAXPRO | 3D Interactive Dashboard">
-<meta property="og:description" content="Explore our advanced 3D interactive dashboard for auto detailing.">
-<meta property="og:image" content="/og-image.jpg">
-<meta property="og:type" content="website">
-<meta name="description" content="MAXPRO provides a professional 3D interactive experience for car enthusiasts and detailing services.">
-<meta name="keywords" content="3D, Car, Auto Detailing, Dashboard, Interactive">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+    <link rel="manifest" href="/icons/site.webmanifest" />
+    <meta name="description" content="MAXPRO delivers premium car wrapping, window tinting, and auto detailing with a 3D visualizer experience for performance cars and luxury vehicle care." />
+    <link rel="canonical" href="https://feras-tec.github.io/neodrive-dashboard/" />
+    <meta property="og:title" content="MAXPRO | Premium Car Detailing & Wrapping Studio" />
+    <meta property="og:description" content="MAXPRO delivers premium car wrapping, window tinting, and auto detailing with a 3D visualizer experience for performance cars and luxury vehicle care." />
+    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image:alt" content="MAXPRO premium car detailing and car wrapping showcase" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://feras-tec.github.io/neodrive-dashboard/" />
+    <meta property="og:site_name" content="MAXPRO" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="keywords" content="3D, Car, Auto Detailing, Dashboard, Interactive" />
   </head>
   <body
     class="min-h-screen bg-base-100 text-base-content overflow-x-hidden selection:bg-primary font-sans"
   >
     <header
+      id="top"
       class="navbar bg-base-100/30 backdrop-blur-xl sticky top-0 z-60 px-4 md:px-8 border-b border-base-content/10"
     >
       <div class="flex-1">
-        <a class="text-2xl font-black tracking-tighter text-primary italic"
+        <a href="#top" aria-label="MAXPRO home" class="text-2xl font-black tracking-tighter text-primary italic"
           >MAX<span class="text-base-content">PRO</span></a
         >
       </div>
@@ -55,6 +60,8 @@
         <div class="dropdown dropdown-end">
           <label
             tabindex="0"
+            aria-label="Open navigation menu"
+            title="Open navigation menu"
             class="btn btn-ghost btn-circle border border-white/5 bg-white/5 hover:bg-white/10"
           >
             <svg
@@ -74,10 +81,10 @@
           </label>
           <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow-2xl bg-base-200/95 backdrop-blur-lg rounded-2xl w-52 border border-base-content/10">
   <li>
-    <a class="py-3 font-bold uppercase tracking-widest text-[10px] text-primary" data-en="Showroom" data-de="Ausstellungsraum">Showroom</a>
+    <a href="#plaza-section" aria-label="View 3D showroom" class="py-3 font-bold uppercase tracking-widest text-[10px] text-primary" data-en="3D Showroom" data-de="3D Ausstellungsraum">3D Showroom</a>
   </li>
   <li>
-    <a class="py-3 font-bold uppercase tracking-widest text-[10px] text-primary open-booking" data-en="Book Now" data-de="Jetzt Buchen">Book Now</a>
+    <a href="#booking-card" aria-label="Book MAXPRO premium car service" class="py-3 font-bold uppercase tracking-widest text-[10px] text-primary open-booking" data-en="Book Car Service" data-de="Jetzt Buchen">Book Car Service</a>
   </li>
   
   <div class="divider my-0 opacity-10"></div>
@@ -91,7 +98,7 @@
   </li>
   <div class="divider my-0 opacity-10"></div>
   <li>
-    <a class="py-3 font-bold uppercase tracking-widest text-[10px] text-primary" data-en="Settings" data-de="Einstellungen">Settings</a>
+    <a href="#" aria-label="Open appearance settings" class="py-3 font-bold uppercase tracking-widest text-[10px] text-primary" data-en="Theme Settings" data-de="Einstellungen">Theme Settings</a>
   </li>
 </ul>
         </div>
@@ -142,46 +149,55 @@
               <div class="flex flex-wrap justify-center gap-3">
                 <button
                   data-color="#1f6fff"
+                  aria-label="Select Electric Blue car wrapping color"
                   class="w-8 h-8 rounded-full border border-white/20 bg-[#1f6fff] hover:scale-125 transition"
                   title="Electric Blue"
                 ></button>
                 <button
                   data-color="#f5c400"
+                  aria-label="Select Giallo Yellow car wrapping color"
                   class="w-8 h-8 rounded-full border border-white/20 bg-[#f5c400] hover:scale-125 transition"
                   title="Giallo Yellow"
                 ></button>
                 <button
                   data-color="#c8102e"
+                  aria-label="Select Rosso Corsa car wrapping color"
                   class="w-8 h-8 rounded-full border border-white/20 bg-[#c8102e] hover:scale-125 transition"
                   title="Rosso Corsa"
                 ></button>
                 <button
                   data-color="#0b4da2"
+                  aria-label="Select Racing Blue car wrapping color"
                   class="w-8 h-8 rounded-full border border-white/20 bg-[#0b4da2] hover:scale-125 transition"
                   title="Racing Blue"
                 ></button>
                 <button
                   data-color="#0f5e3a"
+                  aria-label="Select British Racing Green car wrapping color"
                   class="w-8 h-8 rounded-full border border-white/20 bg-[#0f5e3a] hover:scale-125 transition"
                   title="British Racing Green"
                 ></button>
                 <button
                   data-color="#a7a9ac"
+                  aria-label="Select Silver car wrapping color"
                   class="w-8 h-8 rounded-full border border-white/20 bg-[#a7a9ac] hover:scale-125 transition"
                   title="Silver"
                 ></button>
                 <button
                   data-color="#ffffff"
+                  aria-label="Select Pearl White car wrapping color"
                   class="w-8 h-8 rounded-full border border-white/20 bg-[#ffffff] hover:scale-125 transition"
                   title="Pearl White"
                 ></button>
                 <button
                   data-color="#4b4b4d"
+                  aria-label="Select Gunmetal car wrapping color"
                   class="w-8 h-8 rounded-full border border-white/20 bg-[#4b4b4d] hover:scale-125 transition"
                   title="Gunmetal"
                 ></button>
                 <button
                   data-color="#0a0a0a"
+                  aria-label="Select Obsidian Black car wrapping color"
                   class="w-8 h-8 rounded-full border border-white/20 bg-[#0a0a0a] hover:scale-125 transition"
                   title="Obsidian Black"
                 ></button>
@@ -285,12 +301,12 @@
             data-title="VINYL WRAPPING"
             data-desc="Full vehicle wrapping using premium vinyl films. Transform your vehicle's appearance while safeguarding the original paint from road debris and weather elements."
             data-theme="primary"
-            data-img1="wrapping1.jpg"
-            data-img2="wrapping2.jpg"
-            data-img3="wrapping3.jpg"
+            data-img1="/wrapping1.webp"
+            data-img2="/wrapping2.webp"
+            data-img3="/wrapping3.webp"
           >
             <div class="h-48 w-full overflow-hidden">
-              <img src="wrapping1.jpg" class="w-full h-full object-cover" />
+              <img src="/wrapping1.webp" alt="MAXPRO Car Wrapping service for premium performance car" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1600" height="1067" />
             </div>
             <div class="p-10 space-y-5">
               <div
@@ -323,7 +339,7 @@
                 and paint protection.
               </p>
               <div
-                class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-primary"
+                class="view-details-btn flex items-center gap-2 text-[10px] font-black uppercase tracking-widest"
               >
                 <span data-en="View Details" data-de="Details ansehen">View Details</span>
                 <svg
@@ -349,12 +365,12 @@
             data-title="WINDOW TINTING"
             data-desc="High-performance ceramic tinting solutions. Enjoy up to 90% heat rejection and maximum UV protection for a cooler, safer driving experience."
             data-theme="blue"
-            data-img1="tinting.jpg"
-            data-img2="tinting1.jpg"
-            data-img3="tinting2.jpg"
+            data-img1="/tinting.webp"
+            data-img2="/tinting1.webp"
+            data-img3="/tinting2.webp"
           >
             <div class="h-48 w-full overflow-hidden">
-              <img src="tinting.jpg" class="w-full h-full object-cover" />
+              <img src="/tinting.webp" alt="MAXPRO Car Detailing and window tinting on luxury vehicle" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1600" height="1067" />
             </div>
             <div class="p-10 space-y-5">
               <div
@@ -387,7 +403,7 @@
                 enhanced cabin privacy.
               </p>
               <div
-                class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-blue-400"
+                class="view-details-btn flex items-center gap-2 text-[10px] font-black uppercase tracking-widest"
               >
                 <span data-en="View Details" data-de="Details ansehen">View Details</span>
                 <svg
@@ -413,12 +429,12 @@
   data-title="AUTO DETAILING"
   data-desc="Comprehensive detailing services including paint correction, ceramic coating, and deep interior restoration for absolute vehicle perfection."
   data-theme="secondary"
-  data-img1="Auto Detaling.jpg"
-  data-img2="Auto Detaling1.jpg"
-  data-img3="Auto Detaling2.jpg"
+  data-img1="/Auto Detaling.webp"
+  data-img2="/Auto Detaling1.webp"
+  data-img3="/Auto Detaling2.webp"
 >
   <div class="h-48 w-full overflow-hidden">
-    <img src="Auto Detaling.jpg" class="w-full h-full object-cover" />
+    <img src="/Auto Detaling.webp" alt="MAXPRO Car Detailing studio finish with 3D visualizer quality" class="w-full h-full object-cover" loading="lazy" decoding="async" width="1600" height="1067" />
   </div>
 
   <div class="p-10 space-y-5">
@@ -429,7 +445,7 @@
     </div>
     <h3 class="text-2xl font-black uppercase tracking-tighter text-base-content" data-en="Auto Detailing" data-de="Fahrzeugaufbereitung">Auto Detailing</h3>
     <p class="text-xs text-base-content opacity-60 leading-relaxed" data-en="Professional deep cleaning and multi-stage polishing for a showroom-perfect finish." data-de="Professionelle Tiefenreinigung und mehrstufige Politur fuer ein perfektes Finish.">Professional deep cleaning and multi-stage polishing for a showroom-perfect finish.</p>
-    <div class="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-secondary">
+    <div class="view-details-btn flex items-center gap-2 text-[10px] font-black uppercase tracking-widest">
       <span data-en="View Details" data-de="Details ansehen">View Details</span>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -562,6 +578,7 @@
             </h3>
             <button
               id="booking-close"
+              aria-label="Close booking form"
               class="btn btn-ghost btn-xs btn-circle text-base-content opacity-60"
             >
               ✕
@@ -634,15 +651,15 @@
           >
           <span
             class="text-[10px] font-bold uppercase tracking-widest text-base-content"
-            data-en="Get in touch"
+            data-en="Contact MAXPRO Support"
             data-de="Kontakt aufnehmen"
-            >Get in touch</span
+            >Contact MAXPRO Support</span
           >
         </div>
       </a>
     </div>
 
-    <section class="relative" data-aos="fade-up">
+    <section id="plaza-section" class="relative" data-aos="fade-up">
       <div
         class="card relative w-full max-w-6xl mx-auto bg-base-200/40 backdrop-blur-xl border border-white/10 rounded-[3rem] p-8 shadow-2xl transition-all duration-500 hover:bg-base-200/60 hover:shadow-primary/20"
       >
@@ -670,7 +687,7 @@
       class="footer p-12 bg-base-100 border-t border-base-content/10 w-full flex flex-col items-center justify-center text-center gap-8"
     >
       <div class="flex-1">
-        <a class="text-2xl font-black tracking-tighter text-primary italic"
+        <a href="#top" aria-label="Back to top" class="text-2xl font-black tracking-tighter text-primary italic"
           >MAX<span class="text-base-content">PRO</span></a
         >
         </div>
@@ -739,5 +756,31 @@
     </footer>
 
     <script type="module" src="/src/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const modelViewer = document.getElementById("car-model");
+        if (!modelViewer) return;
+
+        const setArButtonTabIndex = () => {
+          const arButton = modelViewer.shadowRoot?.querySelector("#default-ar-button");
+          if (!arButton) return false;
+          const current = Number(arButton.getAttribute("tabindex"));
+          if (Number.isFinite(current) && current > 0) {
+            arButton.setAttribute("tabindex", "0");
+          }
+          return true;
+        };
+
+        if (setArButtonTabIndex()) return;
+
+        const retryTimer = setInterval(() => {
+          if (setArButtonTabIndex()) {
+            clearInterval(retryTimer);
+          }
+        }, 300);
+
+        setTimeout(() => clearInterval(retryTimer), 6000);
+      });
+    </script>
   </body>
 </html>

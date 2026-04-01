@@ -1,9 +1,6 @@
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { TransformControls } from "three/examples/jsm/controls/TransformControls.js";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "./register-sw.js";
 
 // ===== CONSTANTS =====
 const ANIMATION_CONFIG = {
@@ -249,9 +246,26 @@ const setupDynamicModal = () => {
   });
 };
 
-const setupThreePlazaShowcase = () => {
+const setupThreePlazaShowcase = async () => {
   const mount = document.getElementById("plaza-three-canvas");
   if (!mount) return;
+  if (mount.dataset.initialized === "true") return;
+
+  const [
+    THREE,
+    { GLTFLoader },
+    { DRACOLoader },
+    { OrbitControls },
+    { TransformControls },
+  ] = await Promise.all([
+    import("three"),
+    import("three/examples/jsm/loaders/GLTFLoader.js"),
+    import("three/examples/jsm/loaders/DRACOLoader.js"),
+    import("three/examples/jsm/controls/OrbitControls.js"),
+    import("three/examples/jsm/controls/TransformControls.js"),
+  ]);
+
+  mount.dataset.initialized = "true";
 
   mount.innerHTML = "";
   mount.style.position = "relative";
@@ -374,6 +388,9 @@ const setupThreePlazaShowcase = () => {
   };
 
   const loader = new GLTFLoader(loadingManager);
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath("/draco/");
+  loader.setDRACOLoader(dracoLoader);
 
   const prepareModelVisibility = (root) => {
     root.traverse((node) => {
@@ -746,7 +763,26 @@ document.addEventListener("DOMContentLoaded", () => {
   initLanguageSwitcher();
   setupDynamicModal();
   setupModelColoring();
-  setupThreePlazaShowcase();
+  // setupThreePlazaShowcase(); // Lazy load when section is visible
+
+  // Lazy load plaza 3D scene
+  const plazaSection = document.getElementById("plaza-section");
+  if (plazaSection) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setupThreePlazaShowcase().catch((error) => {
+              console.error("Failed to initialize 3D plaza showcase:", error);
+            });
+            observer.disconnect(); // Only load once
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(plazaSection);
+  }
 
   document.addEventListener("click", (e) => {
     if (

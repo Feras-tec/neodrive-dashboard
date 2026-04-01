@@ -1,6 +1,6 @@
- https://feras-tec.github.io/neodrive-dashboard
-
 # NEODRIVE | 3D Interactive Dashboard
+
+Live Demo: [https://feras-tec.github.io/neodrive-dashboard](https://feras-tec.github.io/neodrive-dashboard)
 
 ## 🚗 Über das Projekt
 
@@ -34,14 +34,16 @@ Die Inspiration für dieses Projekt stammt von modernen Elektrofahrzeug-Schnitts
 
 ## 📸 Screenshots
 
-_(Hier kannst du deine Screenshots einfügen)_
+### Hinweis
 
-1. **Dark Mode View:** `![Dark Mode](./screenshots/dark-mode.png)
-2. **Light Mode View:** `![Light Mode](./screenshots/light-mode.png)
-3. **3D Interaction:** `![3D View](./screenshots/3d-interaction.png)
+Hier kannst du deine Screenshots einfuegen.
+
+1. **Dark Mode View:** ![Dark Mode](./screenshots/dark-mode.png)
+2. **Light Mode View:** ![Light Mode](./screenshots/light-mode.png)
+3. **3D Interaction:** ![3D View](./screenshots/3d-interaction.png)
 
 ## 🚀 Installation
 
 1. Repository klonen.
-2. `npm install` ausführen.
+2. `npm install` ausfuehren.
 3. `npm run dev` starten.

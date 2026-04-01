@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://feras-tec.github.io/neodrive-dashboard/sitemap.xml
