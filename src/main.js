@@ -1,6 +1,20 @@
-import AOS from "aos";
-import "aos/dist/aos.css";
 import "./register-sw.js";
+
+if (import.meta.env.DEV) {
+  const originalWarn = console.warn.bind(console);
+  console.warn = (...args) => {
+    const message = args[0];
+    if (
+      typeof message === "string" &&
+      message.includes(
+        "THREE.WARNING: Multiple instances of Three.js being imported.",
+      )
+    ) {
+      return;
+    }
+    originalWarn(...args);
+  };
+}
 
 // ===== CONSTANTS =====
 const ANIMATION_CONFIG = {
@@ -43,14 +57,24 @@ const LIGHTS_CONFIG = {
   spotLightDistance: 38,
 };
 
-AOS.init({
-  duration: ANIMATION_CONFIG.aosDuration,
-  once: true,
-  easing: "ease-out-back",
-});
+const initAOS = async () => {
+  const [{ default: AOS }] = await Promise.all([
+    import("aos"),
+    import("aos/dist/aos.css"),
+  ]);
+
+  AOS.init({
+    duration: ANIMATION_CONFIG.aosDuration,
+    once: true,
+    easing: "ease-out-back",
+  });
+};
 
 const bookingCard = document.getElementById("booking-card");
 const DEBUG = false; // Set to true for logging
+const MODEL_VIEWER_MODULE_URL =
+  "https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js";
+let modelViewerModulePromise;
 
 const toggleBooking = (show = true) => {
   if (!bookingCard) return;
@@ -68,6 +92,86 @@ const toggleBooking = (show = true) => {
 };
 
 window.toggleBooking = toggleBooking;
+
+const ensureModelViewerLoaded = () => {
+  if (customElements.get("model-viewer")) {
+    return Promise.resolve();
+  }
+
+  if (!modelViewerModulePromise) {
+    modelViewerModulePromise = new Promise((resolve, reject) => {
+      const existingScript = document.querySelector(
+        'script[data-model-viewer-loader="true"]',
+      );
+
+      if (existingScript) {
+        existingScript.addEventListener("load", () => resolve(), {
+          once: true,
+        });
+        existingScript.addEventListener(
+          "error",
+          () => reject(new Error("Model-viewer script failed to load.")),
+          { once: true },
+        );
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.type = "module";
+      script.src = MODEL_VIEWER_MODULE_URL;
+      script.dataset.modelViewerLoader = "true";
+      script.addEventListener("load", () => resolve(), { once: true });
+      script.addEventListener(
+        "error",
+        () => reject(new Error("Model-viewer script failed to load.")),
+        {
+          once: true,
+        },
+      );
+      document.head.appendChild(script);
+    });
+  }
+
+  return modelViewerModulePromise;
+};
+
+const setupLazyModelViewer = () => {
+  const modelViewer = document.getElementById("car-model");
+  if (!modelViewer) return;
+
+  let didInit = false;
+  const initialize = () => {
+    if (didInit) return;
+    didInit = true;
+
+    ensureModelViewerLoaded()
+      .then(() => {
+        setupModelColoring();
+      })
+      .catch((error) => {
+        console.error("Failed to load model-viewer:", error);
+      });
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    initialize();
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          initialize();
+          observer.disconnect();
+        }
+      });
+    },
+    { threshold: 0.05, rootMargin: "200px 0px" },
+  );
+
+  observer.observe(modelViewer);
+};
 
 const setupModelColoring = () => {
   const modelViewer = document.querySelector("#car-model");
@@ -318,8 +422,10 @@ const setupThreePlazaShowcase = async () => {
   transformControls.space = "world";
   transformControls.showY = true;
   transformControls.size = 1.25;
-  scene.add(transformControls);
-
+  const transformControlsHelper = transformControls.getHelper();
+  if (transformControlsHelper?.isObject3D) {
+    scene.add(transformControlsHelper);
+  }
   transformControls.addEventListener("dragging-changed", (event) => {
     controls.enabled = !event.value;
   });
@@ -429,12 +535,6 @@ const setupThreePlazaShowcase = async () => {
     };
   };
 
-  const moveModelToGround = (root, targetY) => {
-    const box = new THREE.Box3().setFromObject(root);
-    if (box.isEmpty()) return;
-    root.position.y += targetY - box.min.y;
-  };
-
   const centerModelXZ = (root) => {
     const box = new THREE.Box3().setFromObject(root);
     if (box.isEmpty()) return;
@@ -467,8 +567,27 @@ const setupThreePlazaShowcase = async () => {
   const raycaster = new THREE.Raycaster();
 
   let activePlazaCenter = new THREE.Vector3(0, 0, 0);
-  let activePlazaFloorY = 0;
   let activeInnerLimit = 6;
+  const handlePointerDown = (event) => {
+    if (transformControls.dragging) return;
+
+    const rect = renderer.domElement.getBoundingClientRect();
+    pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(pointer, camera);
+
+    const intersects = raycaster.intersectObjects(draggableCars, true);
+    if (!intersects.length) return;
+
+    let root = intersects[0].object;
+    while (root.parent && !root.userData?.isDraggableCar) {
+      root = root.parent;
+    }
+
+    if (root.userData?.isDraggableCar) {
+      transformControls.attach(root);
+    }
+  };
 
   transformControls.addEventListener("objectChange", () => {
     const obj = transformControls.object;
@@ -487,28 +606,7 @@ const setupThreePlazaShowcase = async () => {
     );
   });
 
-  renderer.domElement.addEventListener("pointerdown", (event) => {
-    if (transformControls.dragging) return;
-
-    const rect = renderer.domElement.getBoundingClientRect();
-    pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-    pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-    raycaster.setFromCamera(pointer, camera);
-
-    const intersects = raycaster.intersectObjects(draggableCars, true);
-    if (!intersects.length) {
-      return;
-    }
-
-    let root = intersects[0].object;
-    while (root.parent && !root.userData?.isDraggableCar) {
-      root = root.parent;
-    }
-
-    if (root.userData?.isDraggableCar) {
-      transformControls.attach(root);
-    }
-  });
+  renderer.domElement.addEventListener("pointerdown", handlePointerDown);
 
   let carsPlaced = false;
   const placeCars = (plazaCenter, plazaFloorY, plazaSize) => {
@@ -516,7 +614,6 @@ const setupThreePlazaShowcase = async () => {
     carsPlaced = true;
 
     activePlazaCenter = plazaCenter.clone();
-    activePlazaFloorY = plazaFloorY;
     activeInnerLimit = THREE.MathUtils.clamp(
       Math.min(plazaSize.x, plazaSize.z) * 0.22,
       4.5,
@@ -673,17 +770,25 @@ const setupThreePlazaShowcase = async () => {
 
   window.addEventListener("resize", onResize);
 
+  let animationFrameId = 0;
   const animate = () => {
     controls.update();
     renderer.render(scene, camera);
-    requestAnimationFrame(animate);
+    animationFrameId = requestAnimationFrame(animate);
   };
 
-  animate();
+  animationFrameId = requestAnimationFrame(animate);
 
   // Cleanup function for hot reload and page unload
+  let isDisposed = false;
   const cleanup = () => {
+    if (isDisposed) return;
+    isDisposed = true;
     window.removeEventListener("resize", onResize);
+    renderer.domElement.removeEventListener("pointerdown", handlePointerDown);
+    window.cancelAnimationFrame(animationFrameId);
+    transformControls.detach();
+    transformControls.dispose();
     renderer.dispose();
     if (mount.contains(renderer.domElement)) {
       mount.removeChild(renderer.domElement);
@@ -748,6 +853,18 @@ const initLanguageSwitcher = () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
+  const scheduleAOS = () => {
+    initAOS().catch((error) => {
+      console.error("Failed to initialize AOS:", error);
+    });
+  };
+
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(scheduleAOS, { timeout: 1200 });
+  } else {
+    setTimeout(scheduleAOS, 0);
+  }
+
   document.querySelectorAll(".open-booking").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
@@ -762,7 +879,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initLanguageSwitcher();
   setupDynamicModal();
-  setupModelColoring();
+  setupLazyModelViewer();
   // setupThreePlazaShowcase(); // Lazy load when section is visible
 
   // Lazy load plaza 3D scene

@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @plugin "daisyui";
-@import "aos/dist/aos.css";
 
 .model-view {
   width: 100%;
@@ -8,32 +7,25 @@
   display: block;
   background: transparent;
 }
-
 .is-hidden {
   display: none;
 }
-
 .is-shifted {
   transform: translateY(40px);
   opacity: 0;
 }
-
 .modal-banner {
   height: 12rem;
 }
-
 .modal-banner-primary {
   background: linear-gradient(to right, #ff4500, #000);
 }
-
 .modal-banner-blue {
-  background: linear-gradient(to right, #0066ff, #000);
+  background: linear-gradient(to right, #06f, #000);
 }
-
 .modal-banner-secondary {
   background: linear-gradient(to right, #8b5cf6, #000);
 }
-
 html,
 body {
   transition:
@@ -41,44 +33,33 @@ body {
     color 0.5s ease,
     border-color 0.5s ease;
 }
-
 [data-theme="dark"] select option {
   background-color: #18181b;
-  color: #ffffff;
+  color: #fff;
 }
-
 [data-theme="light"] select option {
-  background-color: #ffffff;
+  background-color: #fff;
   color: #1a1a1a;
 }
-
-[data-theme="light"] .service-card {
-  background-color: rgba(0, 0, 0, 0.02);
-  border-color: rgba(0, 0, 0, 0.05);
-}
-
+[data-theme="light"] .service-card,
 [data-theme="light"] .stat {
   background-color: rgba(0, 0, 0, 0.02);
   border-color: rgba(0, 0, 0, 0.05);
 }
-
 [data-theme="light"] .modal-box {
-  background-color: #ffffff;
+  background-color: #fff;
   border-color: rgba(0, 0, 0, 0.1);
 }
-
 [data-theme="light"] #booking-card .card {
   background-color: #f9f9f9;
   border-color: rgba(0, 0, 0, 0.1);
 }
-
 .service-card,
 .stat,
 .card,
 .modal-box {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .view-details-btn {
   display: inline-flex;
   align-items: center;
@@ -87,32 +68,28 @@ body {
   border-radius: 0.6rem;
   border: 1px solid rgba(255, 255, 255, 0.3);
   background-color: rgba(10, 18, 35, 0.92);
-  color: #ffffff;
+  color: #fff;
   text-shadow: none;
   transition:
     background-color 0.25s ease,
     border-color 0.25s ease,
     color 0.25s ease;
 }
-
 .service-card:hover .view-details-btn {
   background-color: rgba(2, 6, 23, 0.98);
   border-color: rgba(255, 255, 255, 0.65);
-  color: #ffffff;
+  color: #fff;
 }
-
 [data-theme="light"] .view-details-btn {
   background-color: #0f172a;
   border-color: #0f172a;
-  color: #ffffff;
+  color: #fff;
 }
-
 [data-theme="light"] .service-card:hover .view-details-btn {
   background-color: #020617;
   border-color: #020617;
-  color: #ffffff;
+  color: #fff;
 }
-
 .pricing-card .pricing-hint {
   position: absolute;
   top: 12px;
@@ -132,23 +109,19 @@ body {
   color: #c7d2fe;
   animation: pricingHintPulse 2.2s ease-in-out infinite;
 }
-
 .pricing-card:hover .pricing-hint {
   background: rgba(79, 70, 229, 0.28);
   color: #e0e7ff;
 }
-
 .pricing-card .pricing-hint-icon {
   letter-spacing: normal;
   font-size: 10px;
   transform: translateX(0);
   transition: transform 0.25s ease;
 }
-
 .pricing-card:hover .pricing-hint-icon {
   transform: translateX(2px);
 }
-
 @keyframes pricingHintPulse {
   0%,
   100% {
@@ -160,13 +133,11 @@ body {
     opacity: 1;
   }
 }
-
 [data-theme="light"] .pricing-card .pricing-hint {
   border-color: rgba(0, 0, 0, 0.12);
   background: rgba(79, 70, 229, 0.12);
   color: #3730a3;
 }
-
 .x-protos-title {
   position: relative;
   display: inline-block;
@@ -187,7 +158,170 @@ body {
     xProtosBlueFlow 6s ease-in-out infinite,
     xProtosPulse 2.1s ease-in-out infinite;
 }
-
+.maxpro-brand {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.02em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  isolation: isolate;
+  text-decoration: none;
+  letter-spacing: -0.04em;
+  border: 1px solid rgba(79, 70, 229, 0.24);
+  background: linear-gradient(
+    120deg,
+    rgba(15, 23, 42, 0.62) 0%,
+    rgba(17, 24, 39, 0.25) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(96, 165, 250, 0.12) inset,
+    0 8px 26px rgba(15, 23, 42, 0.22);
+  transform: translateY(0) scale(1);
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease,
+    background-color 0.24s ease,
+    color 0.24s ease;
+}
+.maxpro-brand::before {
+  content: "";
+  position: absolute;
+  inset: -40% 55% -40% -15%;
+  z-index: -1;
+  background: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.28),
+    transparent 68%
+  );
+  opacity: 0.9;
+  transition: opacity 0.25s ease;
+}
+.maxpro-brand::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    105deg,
+    transparent 18%,
+    rgba(255, 255, 255, 0.28) 48%,
+    transparent 75%
+  );
+  background-size: 220% 100%;
+  background-position: 155% 0;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.maxpro-brand .maxpro-brand-max,
+.maxpro-brand .maxpro-brand-pro {
+  display: inline-block;
+  will-change: transform;
+  transition:
+    transform 0.24s ease,
+    color 0.24s ease,
+    text-shadow 0.24s ease;
+}
+.maxpro-brand .maxpro-brand-max {
+  color: #60a5fa;
+  text-shadow: 0 0 16px rgba(59, 130, 246, 0.34);
+}
+.maxpro-brand .maxpro-brand-pro {
+  color: #dbeafe;
+  text-shadow: 0 0 18px rgba(96, 165, 250, 0.45);
+}
+@media (hover: hover) and (pointer: fine) {
+  .maxpro-brand:hover {
+    transform: translateY(-1px) scale(1.025);
+    border-color: rgba(125, 211, 252, 0.62);
+    box-shadow:
+      0 0 0 1px rgba(125, 211, 252, 0.24) inset,
+      0 14px 34px rgba(37, 99, 235, 0.25);
+  }
+  .maxpro-brand:hover::before {
+    opacity: 1;
+  }
+  .maxpro-brand:hover::after {
+    opacity: 1;
+    animation: maxproSweep 0.9s linear;
+  }
+  .maxpro-brand:hover .maxpro-brand-max {
+    transform: translate(-0.5px, -1px);
+    color: #7dd3fc;
+    text-shadow: 0 0 20px rgba(125, 211, 252, 0.58);
+  }
+  .maxpro-brand:hover .maxpro-brand-pro {
+    transform: translate(0.5px, 1px);
+    color: #f0f9ff;
+    text-shadow: 0 0 22px rgba(224, 242, 254, 0.72);
+  }
+}
+.maxpro-brand:focus-visible {
+  outline: none;
+  border-color: rgba(125, 211, 252, 0.85);
+  box-shadow:
+    0 0 0 2px rgba(56, 189, 248, 0.34),
+    0 0 0 6px rgba(2, 132, 199, 0.16);
+}
+.maxpro-brand:focus-visible .maxpro-brand-max {
+  transform: translate(-0.5px, -1px);
+}
+.maxpro-brand:focus-visible .maxpro-brand-pro {
+  transform: translate(0.5px, 1px);
+}
+.maxpro-brand:active {
+  transform: translateY(0) scale(0.98);
+  border-color: rgba(125, 211, 252, 0.72);
+  background: linear-gradient(
+    120deg,
+    rgba(15, 23, 42, 0.82) 0%,
+    rgba(30, 64, 175, 0.35) 100%
+  );
+}
+.maxpro-brand:active .maxpro-brand-max {
+  transform: translate(-0.4px, 1px) scale(0.97);
+}
+.maxpro-brand:active .maxpro-brand-pro {
+  transform: translate(0.4px, -1px) scale(1.01);
+}
+@media (hover: none) {
+  .maxpro-brand {
+    animation: maxproPulse 2.9s ease-in-out infinite;
+  }
+  .maxpro-brand:active::after {
+    opacity: 1;
+    animation: maxproSweep 0.62s linear;
+  }
+  .maxpro-brand:active .maxpro-brand-max {
+    color: #93c5fd;
+  }
+  .maxpro-brand:active .maxpro-brand-pro {
+    color: #fff;
+  }
+}
+@keyframes maxproSweep {
+  0% {
+    background-position: 155% 0;
+  }
+  100% {
+    background-position: -75% 0;
+  }
+}
+@keyframes maxproPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(96, 165, 250, 0.11) inset,
+      0 8px 24px rgba(15, 23, 42, 0.18);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(125, 211, 252, 0.27) inset,
+      0 10px 28px rgba(30, 64, 175, 0.28);
+  }
+}
 .x-protos-title::after {
   content: attr(data-text);
   position: absolute;
@@ -205,7 +339,6 @@ body {
   animation: xProtosShimmer 2.8s linear infinite;
   pointer-events: none;
 }
-
 @keyframes xProtosBlueFlow {
   0% {
     background-position: 0% 50%;
@@ -217,7 +350,6 @@ body {
     background-position: 0% 50%;
   }
 }
-
 @keyframes xProtosShimmer {
   0% {
     background-position: 160% 0;
@@ -226,7 +358,6 @@ body {
     background-position: -60% 0;
   }
 }
-
 @keyframes xProtosPulse {
   0%,
   100% {
@@ -236,7 +367,6 @@ body {
     filter: drop-shadow(0 0 1.3rem rgba(59, 130, 246, 0.95));
   }
 }
-
 @media (max-width: 768px) {
   .x-protos-title {
     letter-spacing: -0.03em;

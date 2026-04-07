@@ -1,12 +1,13 @@
-const CACHE_NAME = "maxpro-cache-v2";
+const CACHE_NAME = "maxpro-cache-v3";
 const ASSETS_TO_CACHE = [
   "/",
   "/index.html",
-  "/icons/site.webmanifest",
-  "/icons/favicon-32x32.png",
-  "/icons/favicon-16x16.png",
-  "/icons/android-chrome-192x192.png",
-  "/icons/android-chrome-512x512.png",
+  "/site.webmanifest",
+  "/favicon-32x32.png",
+  "/favicon-16x16.png",
+  "/apple-touch-icon.png",
+  "/android-chrome-192x192.png",
+  "/android-chrome-512x512.png",
 ];
 
 self.addEventListener("install", (event) => {

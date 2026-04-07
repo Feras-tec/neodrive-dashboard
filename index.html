@@ -2,17 +2,13 @@
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MAXPRO | Premium Car Detailing & Wrapping Studio</title>
     <link rel="stylesheet" href="/src/style.css" />
-    <script
-      type="module"
-      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
-    ></script>
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
-    <link rel="manifest" href="/icons/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="description" content="MAXPRO delivers premium car wrapping, window tinting, and auto detailing with a 3D visualizer experience for performance cars and luxury vehicle care." />
     <link rel="canonical" href="https://feras-tec.github.io/neodrive-dashboard/" />
     <meta property="og:title" content="MAXPRO | Premium Car Detailing & Wrapping Studio" />
@@ -33,8 +29,8 @@
       class="navbar bg-base-100/30 backdrop-blur-xl sticky top-0 z-60 px-4 md:px-8 border-b border-base-content/10"
     >
       <div class="flex-1">
-        <a href="#top" aria-label="MAXPRO home" class="text-2xl font-black tracking-tighter text-primary italic"
-          >MAX<span class="text-base-content">PRO</span></a
+        <a href="#top" aria-label="MAXPRO home" class="maxpro-brand text-2xl font-black tracking-tighter text-primary italic"
+          ><span class="maxpro-brand-max">MAX</span><span class="maxpro-brand-pro text-base-content">PRO</span></a
         >
       </div>
       <div class="flex-none flex items-center gap-3">
@@ -133,6 +129,7 @@
             id="car-model"
             class="model-view"
             src="car1.glb"
+            loading="lazy"
             ar
             camera-controls
             autoplay
@@ -140,7 +137,7 @@
             shadow-intensity="1.4"
             exposure="1"
             environment-image="legacy"
-            draco-decoder-path="/draco/"
+            draco-decoder-location="/draco/"
             alt="NEODRIVE X-PROTOS 3D Car Model"
           ></model-viewer>
           <div class="flex flex-col items-center gap-6 mt-8">
@@ -687,8 +684,8 @@
       class="footer p-12 bg-base-100 border-t border-base-content/10 w-full flex flex-col items-center justify-center text-center gap-8"
     >
       <div class="flex-1">
-        <a href="#top" aria-label="Back to top" class="text-2xl font-black tracking-tighter text-primary italic"
-          >MAX<span class="text-base-content">PRO</span></a
+        <a href="#top" aria-label="Back to top" class="maxpro-brand text-2xl font-black tracking-tighter text-primary italic"
+          ><span class="maxpro-brand-max">MAX</span><span class="maxpro-brand-pro text-base-content">PRO</span></a
         >
         </div>
         <p class="text-[9px] uppercase tracking-[0.5em] text-base-content opacity-70">

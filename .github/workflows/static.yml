@@ -4,6 +4,12 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build without deploying to Pages"
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -28,10 +34,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci --legacy-peer-deps
 
       - name: Build
         run: npm run build
@@ -42,9 +48,13 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          
-          path: './dist'
+          path: "./dist"
+
+      - name: Skip deploy in dry run
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: echo "Dry run requested, skipping Pages deployment."
 
       - name: Deploy to GitHub Pages
+        if: ${{ github.event_name != 'workflow_dispatch' || !inputs.dry_run }}
         id: deployment
         uses: actions/deploy-pages@v4
