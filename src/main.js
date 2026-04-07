@@ -881,7 +881,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupDynamicModal();
   setupLazyModelViewer();
   // setupThreePlazaShowcase(); // Lazy load when section is visible
-
   // Lazy load plaza 3D scene
   const plazaSection = document.getElementById("plaza-section");
   if (plazaSection) {
