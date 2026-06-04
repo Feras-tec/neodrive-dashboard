@@ -1,4 +1,8 @@
 import "./register-sw.js";
+import { inject } from "@vercel/analytics";
+
+// Initialize Vercel Web Analytics
+inject();
 
 if (import.meta.env.DEV) {
   const originalWarn = console.warn.bind(console);
